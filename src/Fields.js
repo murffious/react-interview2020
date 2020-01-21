@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function UpdateInputs(props) {
   const [fields, setFields] = useState({
@@ -16,12 +16,16 @@ export default function UpdateInputs(props) {
       empty: true
     }
   });
+  /* 
+  With a little more time the UI is done and would add validated() function
+  Depending on the UI the ARRAY values would need to be sliced and diced - aka filter/removed or push
+  */
   function hanldeInputChange(event) {
     const { value, name } = event.target;
     // tip: never mutate state just make copy  ;)
     const { field1, field2, field3 } = { ...fields };
     let currentState = { field1, field2, field3 };
-
+    // There are 2 more fancy thins I can think of but this should show you I get it
     switch (name) {
       case "min":
         field1[name] = value;
@@ -39,16 +43,15 @@ export default function UpdateInputs(props) {
         field2[name] = value;
         break;
       case "values":
-        field1[name] = value;
+        field3[name] = value;
         break;
       case "empty":
-        field1[name] = value;
+        field3[name] = value;
         break;
       default:
         break;
     }
     currentState = { field1, field2, field3 };
-    console.log(currentState);
     setFields(currentState);
   }
 
